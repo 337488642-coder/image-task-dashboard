@@ -90,11 +90,15 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
 .task-deadline { text-align: center; color: #666; font-family: monospace; font-size: 12px; }
 .task-deadline.overdue { color: #ea4335; font-weight: 600; }
 .task-types { font-size: 11px; color: #888; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.task-header { display: grid; grid-template-columns: 100px 1fr 80px 90px 100px 110px; gap: 12px; padding: 9px 16px; background: #eef1f5; border-bottom: 2px solid #dde1e7; font-size: 12px; font-weight: 600; color: #777; position: sticky; top: 0; z-index: 20; }
+.task-header .th-center { text-align: center; }
 .empty-state { text-align: center; padding: 40px; color: #999; font-size: 14px; }
 @media (max-width: 1200px) {
   .metrics { grid-template-columns: repeat(2, 1fr); }
   .charts { grid-template-columns: 1fr; }
   .task-row { grid-template-columns: 80px 1fr 60px 80px 90px; }
+  .task-header { grid-template-columns: 80px 1fr 60px 80px 90px; }
+  .task-header .th-deadline { display: none; }
   .task-types { display: none; }
 }
 </style>
@@ -104,7 +108,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
   <h1>图片任务流转看板</h1>
   <div class="sub" style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;">
     <span>数据来源：图片任务流转表 · 共 114 条任务 · 截止日期范围 2026-07-30 ~ 2026-10-30</span>
-    <span id="data-updated-at">数据更新于 2026-09-11 14:22（每30分钟自动同步）</span>
+    <span id="data-updated-at">数据更新于 2026-09-11 14:30（每30分钟自动同步）</span>
   </div>
 </div>
 <div class="container">
@@ -140,12 +144,12 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
       </select>
     </div>
     <div class="filter-item">
-      <label>产品拍摄负责人</label>
-      <select id="f-shoot-owner" multiple onchange="applyFilter()"></select>
-    </div>
-    <div class="filter-item">
       <label>视频拍摄负责人</label>
       <select id="f-video-owner" multiple onchange="applyFilter()"></select>
+    </div>
+    <div class="filter-item">
+      <label>产品拍摄负责人</label>
+      <select id="f-shoot-owner" multiple onchange="applyFilter()"></select>
     </div>
     <div class="filter-item">
       <label>拍摄状态</label>
@@ -175,6 +179,14 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
   <!-- 任务列表（按负责人分组） -->
   <div class="task-section">
     <div class="task-section-title">全员任务总览 <span class="count" id="task-count"></span></div>
+    <div class="task-header">
+      <div>产品编号</div>
+      <div>产品名称 / 产品拍摄 / 视频拍摄 / 附件</div>
+      <div class="th-center">对应店铺</div>
+      <div class="th-center">拍摄状态</div>
+      <div class="th-center">审核状态</div>
+      <div class="th-center th-deadline">截止时间</div>
+    </div>
     <div id="task-list"></div>
   </div>
   <!-- 图表区 -->
