@@ -52,7 +52,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
 .chart-title { font-size: 14px; font-weight: 600; color: #333; margin-bottom: 10px; padding-left: 8px; border-left: 3px solid #1a73e8; }
 .chart-container { width: 100%; height: 280px; }
 /* 任务列表 */
-.task-section { background: #fff; border-radius: 10px; padding: 20px; box-shadow: 0 1px 4px rgba(0,0,0,0.08); }
+.task-section { background: #fff; border-radius: 10px; padding: 20px; margin-bottom: 20px; box-shadow: 0 1px 4px rgba(0,0,0,0.08); }
 .task-section-title { font-size: 16px; font-weight: 600; color: #333; margin-bottom: 16px; padding-left: 10px; border-left: 4px solid #1a73e8; display: flex; align-items: center; gap: 10px; }
 .task-section-title .count { font-size: 13px; color: #999; font-weight: normal; }
 .owner-group { margin-bottom: 12px; border: 1px solid #e8e8e8; border-radius: 8px; overflow: hidden; }
@@ -99,7 +99,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
   <h1>图片任务流转看板</h1>
   <div class="sub" style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;">
     <span>数据来源：图片任务流转表 · 共 114 条任务 · 截止日期范围 2026-07-30 ~ 2026-10-30</span>
-    <span id="data-updated-at">数据更新于 2026-09-11 11:57（每30分钟自动同步）</span>
+    <span id="data-updated-at">数据更新于 2026-09-11 14:03（每30分钟自动同步）</span>
   </div>
 </div>
 <div class="container">
@@ -159,17 +159,17 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
     <button class="btn btn-default" onclick="resetFilter()">重置筛选</button>
     <div class="filter-count" id="filter-count"></div>
   </div>
+  <!-- 任务列表（按负责人分组） -->
+  <div class="task-section">
+    <div class="task-section-title">全员任务总览 <span class="count" id="task-count"></span></div>
+    <div id="task-list"></div>
+  </div>
   <!-- 图表区 -->
   <div class="charts">
     <div class="chart-card"><div class="chart-title">产品拍摄状态分布</div><div class="chart-container" id="chart-status"></div></div>
     <div class="chart-card"><div class="chart-title">终稿审核状态分布</div><div class="chart-container" id="chart-audit"></div></div>
     <div class="chart-card"><div class="chart-title">各店铺任务数量</div><div class="chart-container" id="chart-shop"></div></div>
     <div class="chart-card"><div class="chart-title">各负责人任务数</div><div class="chart-container" id="chart-owner"></div></div>
-  </div>
-  <!-- 任务列表（按负责人分组） -->
-  <div class="task-section">
-    <div class="task-section-title">全员任务总览 <span class="count" id="task-count"></span></div>
-    <div id="task-list"></div>
   </div>
 </div>
 <script>
